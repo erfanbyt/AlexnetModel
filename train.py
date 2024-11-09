@@ -55,8 +55,8 @@ for epoch in range(num_epoches):
             images = images.to(device)
             labels = labels.to(device)
             outputs = model(images)
-
             _, predicted = torch.max(outputs.data, 1)
+            total += labels.size(0)
             correct += (predicted == labels).sum().item()
             del images, labels, outputs
 
