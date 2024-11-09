@@ -46,6 +46,12 @@ for epoch in range(num_epoches):
     print ('Epoch [{}/{}], Step [{}/{}], Loss: {:.4f}' 
                     .format(epoch+1, num_epoches, i+1, total_steps, loss.item()))
     
+    # save the model weights after each 10 epochs
+    if (epoch+1) % 10  == 0:
+        checkpoint_path = f'./model_weights_epoch_{epoch+1}.pth'
+        torch.save(model.state_dict(), checkpoint_path)
+        print(f"model weights saved at epoch {epoch+1}")
+    
     # validation
     with torch.no_grad():
         correct = 0
